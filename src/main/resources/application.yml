@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+
+spring:
+  datasource:
+    url : jdbc:mysql://localhost:8080/server
+    username: root  #数据库连接用户名
+    password: 191513   #数据库连接密码
+    initialSize: 10  #初始化的时候有几条连接
+    minIdle: 10  #连接池中最少保持几条连接
+    maxActive: 100  #连接池中最大保持几条连接
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 200   #PreparedStatement缓存大小
+    filters: stat,wall          #stat:web监控   wall：sql防火墙
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    useGlobalDataSourceStat: true
+    driverClassName : com.mysql.jdbc.Driver
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+     content-type: text/html
+    cache: false
